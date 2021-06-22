@@ -1,0 +1,29 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false,
+        "useBuiltIns": false
+      }
+    ],
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    ["styled-components", { "displayName": true }],
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-proposal-class-properties"
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        [
+          "@babel/preset-env",
+          {
+            "targets": { "node": "current" }
+          }
+        ]
+      ]
+    }
+  }
+}
