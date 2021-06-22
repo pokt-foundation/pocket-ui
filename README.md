@@ -16,7 +16,7 @@ Wrap your app with the `Main` component:
 
 ```jsx
 import React from 'react'
-import { Main } from '@pocket-foundation/ui'
+import { Main } from '@pokt-foundation/ui'
 
 function App() {
   return (
