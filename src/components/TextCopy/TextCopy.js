@@ -70,7 +70,7 @@ const TextCopy = React.memo(
                 color: ${theme.surfaceIcon};
               `}
             >
-              {adornment ?? <IconCopy />}
+              {adornment || <IconCopy />}
             </ButtonIcon>
           }
           adornmentPosition="end"
