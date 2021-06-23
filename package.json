@@ -14,9 +14,6 @@
     "bin/",
     "dist/"
   ],
-  "bin": {
-    "copy-pocket-ui-assets": "./bin/copy-pocket-ui-assets"
-  },
   "scripts": {
     "build": "rollup -c",
     "build:analyze": "ANALYZE=1 npm run build",
