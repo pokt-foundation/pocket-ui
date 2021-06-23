@@ -98,8 +98,6 @@ function ButtonBase({
       ref={innerRef}
       onClick={disabled ? undefined : onClick}
       onKeyDown={disabled ? undefined : handleKeyDown}
-      {...elementProps}
-      {...props}
       css={`
         position: relative;
         display: inline-block;
@@ -131,6 +129,8 @@ function ButtonBase({
           border: 2px solid ${theme.focus};
         }
       `}
+      {...elementProps}
+      {...props}
     />
   )
 }

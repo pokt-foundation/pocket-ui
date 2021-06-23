@@ -74,11 +74,11 @@ const TEXT_STYLES = {
 }
 
 const STYLES_CSS = {
-  size: (value) => `font-size: ${value}px;`,
-  weight: (value) => `font-weight: ${value};`,
-  transform: (value) => `text-transform: ${value};`,
-  lineHeight: (value) => `line-height: ${value};`,
-  monospace: (value) => (value ? monospace() : ''),
+  size: value => `font-size: ${value}px;`,
+  weight: value => `font-weight: ${value};`,
+  transform: value => `text-transform: ${value};`,
+  lineHeight: value => `line-height: ${value};`,
+  monospace: value => (value ? monospace() : ''),
 }
 
 function textStyleToCss(textStyle) {

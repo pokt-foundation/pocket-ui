@@ -50,7 +50,6 @@ const TextCopy = React.memo(
         css={`
           position: relative;
           display: inline-flex;
-          width: ${52.5 * GU}px;
           max-width: 100%;
           height: ${HEIGHT}px;
           padding-left: ${adornment ? `${HEIGHT}px` : '0'};

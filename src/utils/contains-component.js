@@ -12,7 +12,7 @@ function initContainsComponent() {
       const contextValue = useMemo(() => {
         return {
           updateCount(diff) {
-            setCount((count) => count + diff)
+            setCount(count => count + diff)
           },
           contains: count > 0,
         }

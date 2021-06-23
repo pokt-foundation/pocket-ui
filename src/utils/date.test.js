@@ -3,9 +3,15 @@ import { difference, eachDayOfInterval } from './date'
 
 const NOW = new Date()
 
-const add = (date, value, unit) => dayjs(date).add(value, unit).toDate()
+const add = (date, value, unit) =>
+  dayjs(date)
+    .add(value, unit)
+    .toDate()
 
-const sub = (date, value, unit) => dayjs(date).subtract(value, unit).toDate()
+const sub = (date, value, unit) =>
+  dayjs(date)
+    .subtract(value, unit)
+    .toDate()
 
 describe('difference()', () => {
   test('should return the exact number of each unit', () => {
@@ -177,7 +183,9 @@ describe('eachDayOfInterval()', () => {
 
     // Check each day from the start
     interval.forEach((day, index) => {
-      const expectedDate = dayjs(start).add(index, 'day').startOf('day')
+      const expectedDate = dayjs(start)
+        .add(index, 'day')
+        .startOf('day')
 
       expect(dayjs(day).isSame(expectedDate)).toBeTruthy()
     })
@@ -204,7 +212,9 @@ describe('eachDayOfInterval()', () => {
 
     // Check each day from the start
     interval.forEach((day, index) => {
-      const expectedDate = dayjs(NOW).add(index, 'day').startOf('day')
+      const expectedDate = dayjs(NOW)
+        .add(index, 'day')
+        .startOf('day')
 
       expect(dayjs(day).isSame(expectedDate)).toBeTruthy()
     })
@@ -223,7 +233,9 @@ describe('eachDayOfInterval()', () => {
 
     // Check each day from the start
     interval.forEach((day, index) => {
-      const expectedDate = dayjs(start).add(index, 'day').startOf('day')
+      const expectedDate = dayjs(start)
+        .add(index, 'day')
+        .startOf('day')
 
       expect(dayjs(day).isSame(expectedDate)).toBeTruthy()
     })

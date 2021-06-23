@@ -207,7 +207,7 @@ function BarChart({
                       chartHeight - (chartHeight / scaleLength) * index + GU / 2
                     }
                     textAnchor={getLabelPosition(0, labels.length)}
-                    fill={highlightColor ? highlightColor : labelColor}
+                    fill={highlightColor || labelColor}
                     css={`
                       alignment-baseline: middle;
                       font-size: 12px;
