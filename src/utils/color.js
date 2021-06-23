@@ -20,7 +20,7 @@ function normalizeHexColor(value) {
   const hexColor = matches[1].toUpperCase()
 
   if (hexColor.length === 3) {
-    return [...hexColor].map((c) => c + c).join('')
+    return [...hexColor].map(c => c + c).join('')
   }
 
   return hexColor
