@@ -212,7 +212,7 @@ function LineChart({
                       chartHeight - (chartHeight / scaleLength) * index + GU / 2
                     }
                     textAnchor={getLabelPosition(0, labels.length)}
-                    fill={highlightColor ? highlightColor : labelColor}
+                    fill={highlightColor || labelColor}
                     css={`
                       alignment-baseline: middle;
                       font-size: 12px;
@@ -241,8 +241,8 @@ function LineChart({
               />{' '}
               <defs>
                 <linearGradient id="thresholdFill" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0%" stop-color="red" stopOpacity="0" />
-                  <stop offset="100%" stop-color="#952828" stopOpacity="30%" />
+                  <stop offset="0%" stopColor="red" stopOpacity="0" />
+                  <stop offset="100%" stopColor="#952828" stopOpacity="30%" />
                 </linearGradient>
               </defs>
               <rect

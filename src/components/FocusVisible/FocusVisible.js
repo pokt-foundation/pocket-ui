@@ -53,7 +53,7 @@ class FocusVisible extends React.Component {
   }
   // It doesn’t seem to be specified, but pointer-related events happen before
   // the focus-related events on every modern browser.
-  handlePointerEvent = (e) => {
+  handlePointerEvent = e => {
     this._pointerActive = true
     this._timer = setTimeout(() => {
       this._pointerActive = false
