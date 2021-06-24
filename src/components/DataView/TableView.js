@@ -206,6 +206,7 @@ function HeadRow({ cells, selectedCount, renderSelectionCount }) {
                 ${textStyle('body2')};
                 font-weight: 600;
                 border-bottom: 1px solid ${theme.tableBorder};
+                color: ${theme.accentAlternative};
               `}
               colSpan={selectedCount > 0 && index === 1 ? cells.length - 1 : 1}
             >

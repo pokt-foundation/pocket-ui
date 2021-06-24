@@ -150,6 +150,7 @@ function Tag({
         ${!uppercase ? 'text-transform: unset' : ''};
         color: ${color || modeProps.color};
         background: ${background || modeProps.background};
+        font-weight: bold;
         ${unselectable};
       `}
       {...props}

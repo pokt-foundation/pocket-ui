@@ -24,7 +24,6 @@ function Box({ heading, children, padding, ...props }) {
           border-radius: ${fullWidth ? 0 : RADIUS}px;
           border-style: solid;
           border-width: 0px;
-          background: ${theme.surface};
           color: ${theme.surfaceContent};
           & + & {
             margin-top: ${2 * GU}px;
