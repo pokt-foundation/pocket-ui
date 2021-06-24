@@ -34,7 +34,7 @@ function Switch({ checked, disabled, onChange }) {
             background-color: ${disabled
               ? theme.controlBorder
               : checked
-              ? theme.selected
+              ? theme.accentAlternative
               : theme.control};
             cursor: ${disabled ? 'default' : 'pointer'};
 
