@@ -21,17 +21,18 @@ function PaginationItem({ touchMode, selected, index, onChange }) {
         css={`
           width: ${(touchMode ? 4 : 3) * GU}px;
           height: ${(touchMode ? 4 : 3) * GU}px;
-          color: ${theme.surfaceContent};
+          color: ${theme.content};
           border-radius: ${RADIUS}px;
           &:active {
-            background: ${theme.surfacePressed};
+            background: ${theme.accentAlternative};
+            color: ${theme.contentInverted};
           }
 
           ${selected &&
             css`
               && {
-                background: ${theme.accent};
-                color: ${theme.accentContent};
+                background: ${theme.accentAlternative};
+                color: ${theme.contentInverted};
               }
             `};
         `}

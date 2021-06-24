@@ -288,7 +288,7 @@ function EntryRow({ firstRow, cells, selected, rowHeight, mode }) {
     <tr
       css={`
         transition: background 150ms ease-in-out;
-        background: ${selected ? theme.surfaceSelected : 'none'};
+        background: ${selected ? theme.surfaceSelected : 'transparent'};
       `}
     >
       {cells.map(([content, align, compact], index, cells) => {

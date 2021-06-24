@@ -168,7 +168,7 @@ function LineChart({
                           cx={getX(index + 1) * progress}
                           cy={getY(val, progress, chartHeight)}
                           r={dotRadius}
-                          fill="white"
+                          fill={color() || 'white'}
                           stroke={line.color || color(lineIndex, { lines })}
                           strokeWidth="1"
                         />
