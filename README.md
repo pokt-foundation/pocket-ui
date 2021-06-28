@@ -2,7 +2,7 @@
 
 ## Overview
 
-pocketUI is a React library used to build user interfaces for Pocket Network and its related projects. It provides the components needed to build experiences that embody the principles of the nascent Pocket Design System, and can be used both client or server side rendering.
+pocketUI is a React library used to build user interfaces for Pocket Network and its related projects. It provides the components needed to build experiences that embody the principles of the nascent Pocket Design System, and can be used with both client or server side rendering.
 
 The complete documentation will be coming soon!
 
