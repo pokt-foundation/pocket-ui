@@ -206,6 +206,7 @@ function HeadRow({ cells, selectedCount, renderSelectionCount }) {
                 ${textStyle('body2')};
                 font-weight: 600;
                 border-bottom: 1px solid ${theme.tableBorder};
+                color: ${theme.accentAlternative};
               `}
               colSpan={selectedCount > 0 && index === 1 ? cells.length - 1 : 1}
             >
@@ -288,7 +289,7 @@ function EntryRow({ firstRow, cells, selected, rowHeight, mode }) {
     <tr
       css={`
         transition: background 150ms ease-in-out;
-        background: ${selected ? theme.surfaceSelected : 'none'};
+        background: ${selected ? theme.surfaceSelected : 'transparent'};
       `}
     >
       {cells.map(([content, align, compact], index, cells) => {

@@ -66,7 +66,7 @@ const TextCopy = React.memo(
                 width: ${HEIGHT - 2}px;
                 height: ${HEIGHT - 2}px;
                 border-radius: 0;
-                color: ${theme.surfaceIcon};
+                color: ${theme.accentAlternative};
               `}
             >
               {adornment || <IconCopy />}

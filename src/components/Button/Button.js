@@ -95,7 +95,7 @@ function modeStyles(theme, mode, disabled) {
   if (mode === 'strong') {
     return {
       background: theme.accent,
-      color: theme.accentContent,
+      color: theme.contentInverted,
       iconColor: theme.accentContent,
       border: '0',
     }
@@ -123,7 +123,7 @@ function modeStyles(theme, mode, disabled) {
     background: theme.surfaceInteractive,
     color: theme.surfaceContent,
     iconColor: theme.surfaceIcon,
-    border: `1px solid ${theme.accent}`,
+    border: `2px solid ${theme.contentBorder}`,
   }
 }
 
