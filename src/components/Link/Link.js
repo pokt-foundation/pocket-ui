@@ -21,7 +21,7 @@ function Link({ onClick, href, external, ...props }) {
       focusRingRadius={RADIUS}
       {...props}
       css={`
-        color: ${theme.link};
+        color: ${theme.accent};
         text-decoration: ${external ? 'underline' : 'none'};
         font-size: inherit;
       `}

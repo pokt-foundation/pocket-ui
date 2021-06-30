@@ -123,7 +123,7 @@ function modeStyles(theme, mode, disabled) {
     background: theme.surfaceInteractive,
     color: theme.surfaceContent,
     iconColor: theme.surfaceIcon,
-    border: `1px solid ${theme.contentBorder}`,
+    border: `2px solid ${theme.contentBorder}`,
   }
 }
 

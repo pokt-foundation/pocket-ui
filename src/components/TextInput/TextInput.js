@@ -32,7 +32,7 @@ const TextInput = React.forwardRef(
           height: ${5 * GU}px;
           padding: 0 ${1.5 * GU}px;
           background: ${theme.surfaceInteractive};
-          border: 1px solid ${theme.accentAlternative};
+          border: 2px solid ${theme.accentAlternative};
           color: ${theme.surfaceContent};
           border-radius: ${RADIUS}px;
           appearance: none;

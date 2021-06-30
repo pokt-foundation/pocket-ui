@@ -18,7 +18,7 @@ function useMeasuredWidth() {
   }, [])
 
   const onRef = useCallback(
-    element => {
+    (element) => {
       ref.current = element
       onResize()
     },
@@ -56,7 +56,7 @@ function LineChart({
   const [width, onSvgRef] = useMeasuredWidth()
 
   const lines = useMemo(() => {
-    return linesProps.map(lineOrValues =>
+    return linesProps.map((lineOrValues) =>
       Array.isArray(lineOrValues) ? { values: lineOrValues } : lineOrValues
     )
   }, [linesProps])
@@ -74,7 +74,7 @@ function LineChart({
   }, [valuesCount, total])
 
   const getX = useCallback(
-    index => {
+    (index) => {
       return (width / Math.max(1, totalCount - 1)) * index
     },
     [width, totalCount]
@@ -301,7 +301,7 @@ LineChart.defaultProps = {
   lines: [],
   scales: [],
   threshold: false,
-  label: index => index + 1,
+  label: (index) => index + 1,
   color: (index, { lines }) =>
     `hsl(${(index * (360 / lines.length) + 40) % 360}, 60%, 70%)`,
 }

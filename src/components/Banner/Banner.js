@@ -66,7 +66,7 @@ export default function Banner({ children, mode = 'info', title }) {
         grid-template-columns: ${compactMode ? '1fr' : `${12 * GU}px 1fr`};
         padding: ${3 * GU}px ${4 * GU}px;
         padding-left: 0;
-        border-radius: ${RADIUS * 2}px;
+        border-radius: ${RADIUS}px;
       `}
     >
       {!compactMode && (
