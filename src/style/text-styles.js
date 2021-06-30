@@ -5,16 +5,19 @@ const TEXT_STYLES = {
     size: 36,
     weight: 700,
     lineHeight: 1.5,
+    fontWeight: 'bold',
   },
   title2: {
     size: 24,
     weight: 700,
     lineHeight: 1.5,
+    fontWeight: 'bold',
   },
   title3: {
     size: 18,
     weight: 400,
     lineHeight: 1.5,
+    fontWeight: 'bold',
   },
   title4: {
     size: 14,
@@ -78,6 +81,7 @@ const STYLES_CSS = {
   weight: value => `font-weight: ${value};`,
   transform: value => `text-transform: ${value};`,
   lineHeight: value => `line-height: ${value};`,
+  fontWeight: value => `font-weight: ${value};`,
   monospace: value => (value ? monospace() : ''),
 }
 
