@@ -32,11 +32,11 @@ const TextInput = React.forwardRef(
           height: ${5 * GU}px;
           padding: 0 ${1.5 * GU}px;
           background: ${theme.surfaceInteractive};
-          border: 2px solid ${theme.accentAlternative};
+          border: 2px solid ${theme.surfaceInteractiveBorder};
           color: ${theme.surfaceContent};
           border-radius: ${RADIUS}px;
           appearance: none;
-          ${textStyle('body3')};
+          ${textStyle('body2')};
 
           ${multiline
             ? `
