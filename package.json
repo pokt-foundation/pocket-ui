@@ -1,6 +1,6 @@
 {
   "name": "@pokt-foundation/ui",
-  "version": "0.2.0-alpha.2",
+  "version": "0.2.0-alpha.3",
   "description": "Plug-and-play elements based on the Pocket's design system.",
   "repository": "github:pokt-foundation/pocketui",
   "author": "Enrique Ortiz <hi@enriqueortiz.dev>",
