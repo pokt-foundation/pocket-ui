@@ -8,7 +8,7 @@ export default {
   dashboardBackground: '#051829',
   backgroundInverted: '#ffffff',
   border: '#2c3a58',
-  overlay: '#28334c',
+  overlay: '#111D27',
   content: '#FFFFFF',
   contentInverted: '#000000',
   contentBorder: '#FFFFFF',
