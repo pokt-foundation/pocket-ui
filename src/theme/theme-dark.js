@@ -27,6 +27,7 @@ export default {
   surfacePressed: '#3f4e6d',
   surfacePressedInverted: '#F9FAFC',
   surfaceInteractive: '#18212A',
+  surfaceInteractiveBorder: '#AFAFAF',
 
   feedbackSurface: '#4c5d82',
   feedbackSurfaceContent: '#212B36',

@@ -15,33 +15,33 @@ const TEXT_STYLES = {
   },
   title3: {
     size: 18,
-    weight: 400,
+    weight: 300,
     lineHeight: 1.5,
     fontWeight: 'bold',
   },
   title4: {
     size: 14,
-    weight: 400,
+    weight: 300,
     lineHeight: 1.5,
   },
   body1: {
     size: 18,
-    weight: 400,
+    weight: 300,
     lineHeight: 1.5,
   },
   body2: {
     size: 16,
-    weight: 400,
+    weight: 300,
     lineHeight: 1.5,
   },
   body3: {
     size: 14,
-    weight: 400,
+    weight: 300,
     lineHeight: 1.5,
   },
   body4: {
     size: 12,
-    weight: 400,
+    weight: 300,
     lineHeight: 1.5,
   },
   label1: {

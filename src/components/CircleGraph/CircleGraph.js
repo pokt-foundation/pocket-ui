@@ -156,7 +156,7 @@ function CircleGraph({ color, label, size, strokeWidth, value }) {
                       <animated.div
                         css={`
                           display: flex;
-                          color: ${theme.surfaceContentSecondary};
+                          color: ${theme.content};
                         `}
                         style={{ fontSize: `${size * 0.13}px` }}
                       >
@@ -171,7 +171,7 @@ function CircleGraph({ color, label, size, strokeWidth, value }) {
                         right: 0;
                         display: flex;
                         justify-content: center;
-                        color: ${theme.surfaceContentSecondary};
+                        color: ${theme.content};
                       `}
                       style={{ fontSize: `${size * 0.1}px` }}
                     >

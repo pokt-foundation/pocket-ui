@@ -216,7 +216,6 @@ function BarChart({
                       ${highlightColor &&
                         `
                         font-weight: 800;
-                        font-size
                       `}
                     `}
                   >

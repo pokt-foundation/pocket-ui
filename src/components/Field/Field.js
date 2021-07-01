@@ -42,7 +42,7 @@ function Field({ children, label, required, ...props }) {
               height: ${2 * GU}px;
               margin-bottom: ${1 * GU}px;
               white-space: nowrap;
-              ${textStyle('body3')};
+              ${textStyle('body2')};
               ${unselectable};
             `}
           >
@@ -51,7 +51,7 @@ function Field({ children, label, required, ...props }) {
               {isRequired && (
                 <span
                   css={`
-                    color: ${theme.accent};
+                    color: ${theme.content};
                   `}
                   title="Required"
                 >
