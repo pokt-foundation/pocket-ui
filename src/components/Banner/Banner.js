@@ -32,7 +32,7 @@ export default function Banner({ children, mode = 'info', title }) {
     }
 
     if (mode === 'info') {
-      return theme.accent
+      return theme.accentAlternative
     }
 
     if (mode === 'warning') {

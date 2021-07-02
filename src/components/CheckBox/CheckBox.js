@@ -76,7 +76,7 @@ class Checkbox extends React.PureComponent {
               transform: progress.interpolate(v => `scale(${v})`),
             }}
           >
-            <Icon color={disabled ? theme.selectedDisabled : theme.selected} />
+            <Icon color={disabled ? theme.selectedDisabled : theme.content} />
           </animated.span>
         )}
       </Spring>
@@ -112,7 +112,11 @@ class Checkbox extends React.PureComponent {
               height: ${SIZE}px;
               margin: ${0.5 * GU}px;
               padding: 0;
-              background: ${disabled ? theme.controlDisabled : theme.control};
+              background: ${disabled
+                ? theme.controlDisabled
+                : checked
+                ? theme.accentAlternative
+                : theme.control};
               border: 1px solid ${theme.controlBorder};
               border-radius: ${variant === 'radio'
                 ? '50%'
