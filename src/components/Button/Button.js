@@ -140,29 +140,6 @@ function BasicButton({
   wide,
   ...props
 }) {
-  // backward compatibility and deprecated props
-  if (iconOnly) {
-    warnOnce(
-      'Button:iconOnly',
-      `Button: "iconOnly" is deprecated, please use "display".`
-    )
-    display = 'icon'
-  }
-  if (mode === 'outline' || mode === 'secondary') {
-    warnOnce(
-      'Button:mode',
-      `Button: the mode "${mode}" is deprecated, please use "normal".`
-    )
-    mode = 'normal'
-  }
-  if (size === 'normal' || size === 'large') {
-    warnOnce(
-      'Button:size',
-      `Button: the size "${size}" is deprecated, please use "medium".`
-    )
-    size = 'medium'
-  }
-
   // prop warnings
   if (display === 'icon' && !icon) {
     warn(`Button: the display "icon" was used without providing an icon.`)

@@ -32,8 +32,6 @@ function ButtonIcon({ label, children, mode, ...props }) {
 ButtonIcon.propTypes = {
   label: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
-
-  // deprecated
   mode: PropTypes.oneOf(['button']),
 }
 

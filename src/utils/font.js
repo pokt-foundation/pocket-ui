@@ -1,5 +1,3 @@
-import { warnOnce } from './environment'
-
 export const DEFAULT_FONT_FAMILY = 'Inter'
 export const MONOSPACE_FONT_FAMILY = 'Source Code Pro'
 
@@ -55,16 +53,7 @@ const monospaceCss = monospace =>
     `
     : ''
 
-export function font({
-  size,
-  weight,
-  smallcaps = false,
-  monospace = false,
-  deprecationNotice = true,
-}) {
-  if (deprecationNotice) {
-    warnOnce('font()', 'font() is deprecated. Please use textStyle() instead.')
-  }
+export function font({ size, weight, smallcaps = false, monospace = false }) {
   return `
     ${fontSizeCss(size)};
     ${weightCss(weight)};

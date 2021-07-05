@@ -161,10 +161,6 @@ WrapperTextInput.defaultProps = {
 
 // <input type=number> (only for compat)
 function TextInputNumber(props) {
-  warnOnce(
-    'TextInputNumber',
-    'TextInputNumber is deprecated. Please use TextInput instead.'
-  )
   return <TextInput type="number" {...props} />
 }
 

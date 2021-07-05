@@ -357,13 +357,6 @@ DataView.propTypes = {
   ]),
   onStatusEmptyClear: PropTypes.func,
   emptyState: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-
-  // deprecated
-  renderEntryChild: PropTypes.func,
-  statusEmpty: PropTypes.node,
-  statusLoading: PropTypes.node,
-  statusEmptyFilters: PropTypes.node,
-  statusEmptySearch: PropTypes.node,
 }
 
 DataView.defaultProps = {
