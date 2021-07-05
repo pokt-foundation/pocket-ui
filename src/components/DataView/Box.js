@@ -67,12 +67,7 @@ function Box({ heading, children, padding, ...props }) {
 Box.propTypes = {
   heading: PropTypes.node,
   children: PropTypes.node,
-  padding: PropTypes.oneOfType([
-    PropTypes.number,
-
-    // deprecated
-    PropTypes.bool,
-  ]),
+  padding: PropTypes.oneOfType([PropTypes.number, PropTypes.bool]),
 }
 
 export default Box

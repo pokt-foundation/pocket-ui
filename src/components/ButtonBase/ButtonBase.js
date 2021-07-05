@@ -192,10 +192,6 @@ ButtonBaseWithFocus.propTypes = {
 }
 
 const LinkBase = React.forwardRef((props, ref) => {
-  warnOnce(
-    'LinkBase',
-    'LinkBase is deprecated: please use ButtonBase with a href prop instead.'
-  )
   return <ButtonBase ref={ref} {...props} />
 })
 
