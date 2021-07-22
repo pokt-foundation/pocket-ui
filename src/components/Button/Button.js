@@ -101,24 +101,6 @@ function modeStyles(theme, mode, disabled) {
     }
   }
 
-  if (mode === 'positive') {
-    return {
-      background: theme.positive,
-      color: theme.positiveContent,
-      iconColor: theme.positiveContent,
-      border: '0',
-    }
-  }
-
-  if (mode === 'negative') {
-    return {
-      background: theme.negative,
-      color: theme.negativeContent,
-      iconColor: theme.negativeContent,
-      border: '0',
-    }
-  }
-
   return {
     background: theme.surfaceInteractive,
     color: theme.surfaceContent,
@@ -132,7 +114,6 @@ function BasicButton({
   disabled,
   display,
   icon,
-  iconOnly,
   innerRef,
   label,
   mode,
@@ -140,29 +121,6 @@ function BasicButton({
   wide,
   ...props
 }) {
-  // backward compatibility and deprecated props
-  if (iconOnly) {
-    warnOnce(
-      'Button:iconOnly',
-      `Button: "iconOnly" is deprecated, please use "display".`
-    )
-    display = 'icon'
-  }
-  if (mode === 'outline' || mode === 'secondary') {
-    warnOnce(
-      'Button:mode',
-      `Button: the mode "${mode}" is deprecated, please use "normal".`
-    )
-    mode = 'normal'
-  }
-  if (size === 'normal' || size === 'large') {
-    warnOnce(
-      'Button:size',
-      `Button: the size "${size}" is deprecated, please use "medium".`
-    )
-    size = 'medium'
-  }
-
   // prop warnings
   if (display === 'icon' && !icon) {
     warn(`Button: the display "icon" was used without providing an icon.`)
