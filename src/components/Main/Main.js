@@ -9,11 +9,11 @@ import { Theme } from '../../theme'
 import '@fontsource/manrope'
 import '@fontsource/source-code-pro'
 
-export default function Main({ children }) {
+export default function Main({ children, theme = 'dark' }) {
   return (
     <Root.Provider>
       <BaseStyles />
-      <Theme theme="dark">
+      <Theme theme={theme}>
         <ViewportProvider>
           <ToastHubProvider>{children}</ToastHubProvider>
         </ViewportProvider>
@@ -24,4 +24,5 @@ export default function Main({ children }) {
 
 Main.propTypes = {
   children: PropTypes.node,
+  theme: PropTypes.string,
 }
