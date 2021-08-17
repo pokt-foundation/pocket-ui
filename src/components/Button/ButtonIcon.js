@@ -26,7 +26,7 @@ function ButtonIcon({ label, children, ...props }) {
 
 ButtonIcon.propTypes = {
   label: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired
 }
 
 export default ButtonIcon

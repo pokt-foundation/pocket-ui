@@ -68,7 +68,7 @@ function prepareTheme(theme) {
           warnOnce(
             `theme:invalid:${name}`,
             `Theme: the color “${name}” is invalid and will be ignored. ` +
-              'Please check src/theme/theme-light.js in the pocketUI' +
+              'Please check src/theme/theme-dark.js in the pocketUI' +
               'repository for a list of valid colors.'
           )
           return false
