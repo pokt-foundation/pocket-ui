@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import { textStyle, GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
-import { warn, warnOnce, unselectable } from '../../utils'
+import { warn, unselectable } from '../../utils'
 import ButtonBase from '../ButtonBase/ButtonBase'
 
 // Base styles related to every size.
@@ -145,19 +145,11 @@ function BasicButton({
   )
 
   // Size styles
-  const {
-    height,
-    middleSpace,
-    minWidth,
-    padding,
-    textStyleCss,
-    width,
-  } = useMemo(() => sizeStyles(size, wide, displayIcon, displayLabel), [
-    size,
-    wide,
-    displayIcon,
-    displayLabel,
-  ])
+  const { height, middleSpace, minWidth, padding, textStyleCss, width } =
+    useMemo(
+      () => sizeStyles(size, wide, displayIcon, displayLabel),
+      [size, wide, displayIcon, displayLabel]
+    )
 
   // Use the label as a title when only the icon is displayed
   if (displayIcon && !displayLabel && label && typeof label === 'string') {
