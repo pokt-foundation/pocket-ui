@@ -15,7 +15,7 @@ It is recommended to use the utility and stick to the provided styles rather tha
 ## Usage
 
 ```jsx
-import { Main, textStyle } from '@pokt-foundation/ui'
+import { textStyle } from '@pokt-foundation/ui'
 
 function App() {
   return (
