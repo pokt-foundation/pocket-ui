@@ -1,14 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { GU } from '../../style'
-import Button from './Button'
 import ButtonBase from '../ButtonBase/ButtonBase'
 
-function ButtonIcon({ label, children, mode, ...props }) {
-  if (mode === 'button') {
-    return <Button label={label} icon={children} display="icon" {...props} />
-  }
-
+function ButtonIcon({ label, children, ...props }) {
   return (
     <ButtonBase
       title={label}
@@ -32,9 +27,6 @@ function ButtonIcon({ label, children, mode, ...props }) {
 ButtonIcon.propTypes = {
   label: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
-
-  // deprecated
-  mode: PropTypes.oneOf(['button']),
 }
 
 export default ButtonIcon

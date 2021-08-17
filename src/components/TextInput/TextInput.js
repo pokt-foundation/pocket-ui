@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react'
 import PropTypes from 'prop-types'
 import { useTheme } from '../../theme'
-import { warnOnce } from '../../utils'
 import { textStyle, GU, RADIUS } from '../../style'
 
 // Simple text input
@@ -10,7 +9,7 @@ const TextInput = React.forwardRef(
     const theme = useTheme()
 
     const handleRef = useCallback(
-      element => {
+      (element) => {
         if (ref) {
           ref.current = element
         }
@@ -159,15 +158,6 @@ WrapperTextInput.defaultProps = {
   adornmentSettings: {},
 }
 
-// <input type=number> (only for compat)
-function TextInputNumber(props) {
-  warnOnce(
-    'TextInputNumber',
-    'TextInputNumber is deprecated. Please use TextInput instead.'
-  )
-  return <TextInput type="number" {...props} />
-}
-
 // Multiline input (textarea element)
 function TextInputMultiline(props) {
   return <TextInput multiline {...props} />
@@ -180,7 +170,6 @@ TextInputMultiline.defaultProps = {
   required: false,
 }
 
-WrapperTextInput.Number = TextInputNumber
 WrapperTextInput.Multiline = TextInputMultiline
 
 export default WrapperTextInput

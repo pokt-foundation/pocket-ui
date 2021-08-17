@@ -63,7 +63,7 @@ function renderEntries(
   entries,
   { fields, renderEntry, renderEntryActions, renderEntryExpansion, mode }
 ) {
-  return entries.map(entry => {
+  return entries.map((entry) => {
     const { value, index, selected } = entry
 
     let entryNodes = renderEntry(value, index, { selected, mode })
@@ -107,7 +107,7 @@ function useSelection(entries, selection, onSelectEntries) {
     selection === undefined ? selectionManaged : selection
 
   const updateSelection = useCallback(
-    newSelection => {
+    (newSelection) => {
       // Managed state
       if (selection === undefined) {
         setSelectionManaged(newSelection)
@@ -115,7 +115,7 @@ function useSelection(entries, selection, onSelectEntries) {
 
       // Useful to notify, even in managed mode
       onSelectEntries(
-        [...newSelection].sort().map(index => entries[index]),
+        [...newSelection].sort().map((index) => entries[index]),
         newSelection
       )
     },
@@ -136,10 +136,10 @@ function useSelection(entries, selection, onSelectEntries) {
   }, [entries, currentSelection])
 
   const toggleEntrySelect = useCallback(
-    entryIndex => {
+    (entryIndex) => {
       updateSelection(
         currentSelection.includes(entryIndex)
-          ? currentSelection.filter(index => index !== entryIndex)
+          ? currentSelection.filter((index) => index !== entryIndex)
           : [...currentSelection, entryIndex]
       )
     },
@@ -186,7 +186,7 @@ const DataView = React.memo(function DataView({
   const [pageManaged, setPageManaged] = useState(0)
 
   const handlePageChange = useCallback(
-    newPage => {
+    (newPage) => {
       // Managed state
       if (page === undefined) {
         setPageManaged(newPage)
@@ -211,12 +211,8 @@ const DataView = React.memo(function DataView({
   const listMode =
     mode === 'list' || (mode !== 'table' && layoutName === 'small')
 
-  const {
-    allSelected,
-    selectAll,
-    toggleEntrySelect,
-    selectedIndexes,
-  } = useSelection(entries, selection, onSelectEntries)
+  const { allSelected, selectAll, toggleEntrySelect, selectedIndexes } =
+    useSelection(entries, selection, onSelectEntries)
 
   const hasAnyActions = Boolean(renderEntryActions)
   const hasAnyExpansion = Boolean(renderEntryExpansion)
@@ -247,7 +243,9 @@ const DataView = React.memo(function DataView({
     mode: listMode ? 'list' : 'table',
   })
 
-  const alignChildOnField = fields.findIndex(field => field && field.childStart)
+  const alignChildOnField = fields.findIndex(
+    (field) => field && field.childStart
+  )
 
   const emptyEntries = renderedEntries.length === 0
 
@@ -357,13 +355,6 @@ DataView.propTypes = {
   ]),
   onStatusEmptyClear: PropTypes.func,
   emptyState: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-
-  // deprecated
-  renderEntryChild: PropTypes.func,
-  statusEmpty: PropTypes.node,
-  statusLoading: PropTypes.node,
-  statusEmptyFilters: PropTypes.node,
-  statusEmptySearch: PropTypes.node,
 }
 
 DataView.defaultProps = {
@@ -371,7 +362,7 @@ DataView.defaultProps = {
   entriesPerPage: 10,
   mode: 'adaptive',
   onPageChange: noop,
-  renderSelectionCount: count => `${count} items selected`,
+  renderSelectionCount: (count) => `${count} items selected`,
   status: 'default',
   tableRowHeight: 8 * GU,
 }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useTheme } from '../../theme'
 import FocusVisible from '../FocusVisible/FocusVisible'
 import { RADIUS, textStyle } from '../../style'
-import { warnOnce, KEY_ENTER, unselectable } from '../../utils'
+import { KEY_ENTER, unselectable } from '../../utils'
 
 function getElementProps({ element, href, disabled, external }) {
   // <button> (handles key events)
@@ -78,7 +78,7 @@ function ButtonBase({
   })
 
   const handleKeyDown = useCallback(
-    event => {
+    (event) => {
       // Only applies to cases where the enter key is not handled already
       if (elementType === 'basic' && event.keyCode === KEY_ENTER && onClick) {
         onClick()
@@ -165,7 +165,7 @@ const ButtonBaseWithFocus = React.forwardRef(
       <FocusVisible>
         {({ focusVisible, onFocus }) => {
           // support external onFocus handlers
-          const handleFocus = event => {
+          const handleFocus = (event) => {
             if (onFocusProp) {
               onFocusProp(event)
             }
@@ -191,13 +191,4 @@ ButtonBaseWithFocus.propTypes = {
   onFocus: PropTypes.func,
 }
 
-const LinkBase = React.forwardRef((props, ref) => {
-  warnOnce(
-    'LinkBase',
-    'LinkBase is deprecated: please use ButtonBase with a href prop instead.'
-  )
-  return <ButtonBase ref={ref} {...props} />
-})
-
-export { LinkBase }
 export default ButtonBaseWithFocus

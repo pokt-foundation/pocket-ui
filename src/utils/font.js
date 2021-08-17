@@ -1,5 +1,3 @@
-import { warnOnce } from './environment'
-
 export const DEFAULT_FONT_FAMILY = 'Inter'
 export const MONOSPACE_FONT_FAMILY = 'Source Code Pro'
 
@@ -23,7 +21,7 @@ const FONT_WEIGHTS = {
   bolder: '800',
 }
 
-const fontSizeCss = size => {
+const fontSizeCss = (size) => {
   const fontSize = FONT_SIZES[size]
 
   return fontSize !== undefined
@@ -34,13 +32,13 @@ const fontSizeCss = size => {
     : ''
 }
 
-const weightCss = weight => {
+const weightCss = (weight) => {
   const fontWeight = FONT_WEIGHTS[weight]
 
   return fontWeight !== undefined ? `font-weight: ${fontWeight}` : ''
 }
 
-const smallcapsCss = smallcaps =>
+const smallcapsCss = (smallcaps) =>
   smallcaps
     ? `
       text-transform: lowercase;
@@ -48,23 +46,14 @@ const smallcapsCss = smallcaps =>
     `
     : ''
 
-const monospaceCss = monospace =>
+const monospaceCss = (monospace) =>
   monospace
     ? `
       font-family: ${MONOSPACE_FONT_FAMILY}, monospace;
     `
     : ''
 
-export function font({
-  size,
-  weight,
-  smallcaps = false,
-  monospace = false,
-  deprecationNotice = true,
-}) {
-  if (deprecationNotice) {
-    warnOnce('font()', 'font() is deprecated. Please use textStyle() instead.')
-  }
+export function font({ size, weight, smallcaps = false, monospace = false }) {
   return `
     ${fontSizeCss(size)};
     ${weightCss(weight)};
