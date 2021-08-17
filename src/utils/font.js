@@ -21,7 +21,7 @@ const FONT_WEIGHTS = {
   bolder: '800',
 }
 
-const fontSizeCss = size => {
+const fontSizeCss = (size) => {
   const fontSize = FONT_SIZES[size]
 
   return fontSize !== undefined
@@ -32,13 +32,13 @@ const fontSizeCss = size => {
     : ''
 }
 
-const weightCss = weight => {
+const weightCss = (weight) => {
   const fontWeight = FONT_WEIGHTS[weight]
 
   return fontWeight !== undefined ? `font-weight: ${fontWeight}` : ''
 }
 
-const smallcapsCss = smallcaps =>
+const smallcapsCss = (smallcaps) =>
   smallcaps
     ? `
       text-transform: lowercase;
@@ -46,7 +46,7 @@ const smallcapsCss = smallcaps =>
     `
     : ''
 
-const monospaceCss = monospace =>
+const monospaceCss = (monospace) =>
   monospace
     ? `
       font-family: ${MONOSPACE_FONT_FAMILY}, monospace;

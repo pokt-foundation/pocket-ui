@@ -101,24 +101,6 @@ function modeStyles(theme, mode, disabled) {
     }
   }
 
-  if (mode === 'positive') {
-    return {
-      background: theme.positive,
-      color: theme.positiveContent,
-      iconColor: theme.positiveContent,
-      border: '0',
-    }
-  }
-
-  if (mode === 'negative') {
-    return {
-      background: theme.negative,
-      color: theme.negativeContent,
-      iconColor: theme.negativeContent,
-      border: '0',
-    }
-  }
-
   return {
     background: theme.surfaceInteractive,
     color: theme.surfaceContent,
@@ -132,7 +114,6 @@ function BasicButton({
   disabled,
   display,
   icon,
-  iconOnly,
   innerRef,
   label,
   mode,

@@ -54,9 +54,7 @@ function useLayout() {
 
   return {
     layoutName,
-    layoutWidth,
-    name: layoutName,
-    width: layoutWidth,
+    layoutWidth
   }
 }
 
