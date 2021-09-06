@@ -33,7 +33,7 @@ const TextInput = React.forwardRef(
           background: ${theme.surfaceInteractive};
           border: 2px solid ${theme.surfaceInteractiveBorder};
           color: ${theme.surfaceContent};
-          border-radius: ${RADIUS}px;
+          border-radius: ${RADIUS / 2}px;
           appearance: none;
           ${textStyle('body2')};
 
@@ -56,7 +56,7 @@ const TextInput = React.forwardRef(
           }
 
           &::placeholder {
-            color: ${theme.hint};
+            color: ${theme.placeholder};
             opacity: 1;
           }
 

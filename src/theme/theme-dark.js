@@ -75,6 +75,7 @@ export default {
   tagActivityContent: '#FFFFFF',
 
   hint: '#6683c3',
+  placeholder: '#c4c4c4',
   link: '#0ca5ff',
   focus: '#0ca5ff',
   selected: '#08BEE5',
