@@ -20,9 +20,10 @@ const DiscButton = React.forwardRef(
           justify-content: center;
           width: ${size}px;
           height: ${size}px;
-          background: ${theme.help};
-          color: ${theme.helpContent};
+          background: transparent;
+          color: ${theme.accentAlternative};
           border-radius: 50%;
+          border: 1px solid ${theme.accentAlternative};
 
           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
           transition-property: transform, box-shadow;
@@ -49,7 +50,7 @@ DiscButton.propTypes = {
 }
 
 DiscButton.defaultProps = {
-  size: 5 * GU,
+  size: 1.5 * GU,
 }
 
 export default DiscButton
