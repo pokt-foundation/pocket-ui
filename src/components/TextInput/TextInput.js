@@ -28,7 +28,7 @@ const TextInput = React.forwardRef(
         {...props}
         css={`
           width: ${({ wide }) => (wide ? '100%' : 'auto')};
-          height: ${5 * GU}px;
+          height: ${6 * GU}px;
           padding: 0 ${1.5 * GU}px;
           background: ${theme.surfaceInteractive};
           border: 2px solid ${theme.surfaceInteractiveBorder};
@@ -36,6 +36,8 @@ const TextInput = React.forwardRef(
           border-radius: ${RADIUS / 2}px;
           appearance: none;
           ${textStyle('body2')};
+
+          transition: all 50ms ease-in-out;
 
           ${multiline
             ? `
@@ -45,9 +47,14 @@ const TextInput = React.forwardRef(
             `
             : ''}
 
+          &:hover {
+            border-color: ${theme.accentAlternative};
+          }
+
           &:focus {
             outline: none;
             border-color: ${theme.accentAlternative};
+            border-width: ${GU / 2}px;
           }
 
           &:read-only {
@@ -90,8 +97,8 @@ const WrapperTextInput = React.forwardRef(
       adornment,
       adornmentPosition,
       adornmentSettings: {
-        width: adornmentWidth = 36,
-        padding: adornmentPadding = 10,
+        width: adornmentWidth = 56,
+        padding: adornmentPadding = 24,
       },
       ...props
     },
@@ -115,7 +122,7 @@ const WrapperTextInput = React.forwardRef(
           css={`
             ${adornmentPosition === 'end'
               ? 'padding-right'
-              : 'padding-left'}: ${adornmentWidth - adornmentPadding * 2}px;
+              : 'padding-left'}: ${adornmentWidth}px;
           `}
           {...props}
         />
