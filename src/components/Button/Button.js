@@ -100,7 +100,7 @@ function modeStyles(theme, mode, disabled) {
       color: theme.contentInverted,
       iconColor: theme.contentInverted,
 
-      activeBackground: theme.surfaceInteractive,
+      activeBackground: 'transparent',
       activeBorder: `2px solid ${theme.accent}`,
       activeColor: theme.surfaceContent,
 
@@ -110,7 +110,7 @@ function modeStyles(theme, mode, disabled) {
   }
 
   return {
-    background: theme.surfaceInteractive,
+    background: 'transparent',
     border: `2px solid ${theme.contentBorder}`,
     color: theme.surfaceContent,
     iconColor: theme.surfaceContent,
