@@ -9,7 +9,7 @@ function useModeColor(mode) {
   const theme = useTheme()
 
   if (mode === 'error') {
-    return `linear-gradient(270deg, ${theme.surface} 36.46%, #3F0B0B 100%)`
+    return `linear-gradient(270deg, #1B2331 36.46%, #3F0B0B 100%)`
   }
   if (mode === 'warning') {
     return `linear-gradient(270deg, ${theme.surface} 36.46%, #816110 100%)`
@@ -28,7 +28,7 @@ export default function Banner({ children, mode = 'info', title }) {
 
   const titleColor = useMemo(() => {
     if (mode === 'error') {
-      return theme.negativeSurfaceContent
+      return theme.negative
     }
 
     if (mode === 'info') {
@@ -104,7 +104,8 @@ export default function Banner({ children, mode = 'info', title }) {
       >
         <h2
           css={`
-            ${textStyle('title4')} font-weight: bold;
+            ${textStyle('title3')}
+            font-weight: bold;
             color: ${titleColor};
           `}
         >
