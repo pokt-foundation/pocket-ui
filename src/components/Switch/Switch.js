@@ -7,8 +7,8 @@ import { springs, GU } from '../../style'
 import FocusVisible from '../FocusVisible/FocusVisible'
 
 const BORDER = 1
-const WRAPPER_WIDTH = 5 * GU
-const WRAPPER_HEIGHT = 2.25 * GU
+const WRAPPER_WIDTH = 4 * GU
+const WRAPPER_HEIGHT = 2 * GU
 
 function Switch({ checked, disabled, onChange }) {
   const theme = useTheme()
@@ -20,7 +20,7 @@ function Switch({ checked, disabled, onChange }) {
     <FocusVisible>
       {({ focusVisible, onFocus }) => (
         <span
-          onClick={e => {
+          onClick={(e) => {
             e.preventDefault()
             handleChange()
           }}
@@ -90,7 +90,7 @@ function Switch({ checked, disabled, onChange }) {
               <animated.span
                 style={{
                   transform: progress.interpolate(
-                    v => `translate3d(${v}px, 0, 0)`
+                    (v) => `translate3d(${v}px, 0, 0)`
                   ),
                 }}
                 css={`

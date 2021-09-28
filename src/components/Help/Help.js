@@ -7,7 +7,7 @@ import { useTheme } from '../../theme'
 import DiscButton from '../DiscButton/DiscButton'
 import Popover from '../Popover/Popover'
 
-function Help({ hint, children }) {
+function Help({ hint, placement, children }) {
   const buttonElement = useRef()
   const [visible, setVisible] = useState(false)
   const open = useCallback(() => setVisible(true), [])
@@ -34,9 +34,9 @@ function Help({ hint, children }) {
         opener={buttonElement.current}
         visible={visible}
         onClose={close}
+        placement={placement}
         css={`
           border: 0;
-          overflow: hidden;
           ${textStyle('body3')};
           background: white;
           color: ${theme.contentInverted};
@@ -58,6 +58,15 @@ function Help({ hint, children }) {
 
 Help.propTypes = {
   hint: PropTypes.string.isRequired,
+  placement: PropTypes.oneOf(
+    ['center'].concat(
+      ...['auto', 'top', 'right', 'bottom', 'left'].map((position) => [
+        position,
+        `${position}-start`,
+        `${position}-end`,
+      ])
+    )
+  ),
   children: PropTypes.node.isRequired,
 }
 
