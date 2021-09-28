@@ -1,35 +1,35 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
+import ButtonBase from '../ButtonBase/ButtonBase'
 import { textStyle, GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
 import { warn, unselectable } from '../../utils'
-import ButtonBase from '../ButtonBase/ButtonBase'
 
 // Base styles related to every size.
 // See src/icons/icon-size.js for the corresponding icon sizes.
 const SIZE_STYLES = {
+  normal: {
+    textStyleName: 'body2',
+    height: 6 * GU,
+    padding: 2 * GU,
+    iconPadding: 2 * GU,
+    minWidth: 27 * GU,
+    middleSpace: 1 * GU,
+  },
   medium: {
     textStyleName: 'body3',
     height: 5 * GU,
-    padding: 3 * GU,
-    iconPadding: 2 * GU,
-    minWidth: 14.5 * GU,
+    padding: 2 * GU,
+    iconPadding: 1.5 * GU,
+    minWidth: 24 * GU,
     middleSpace: 1 * GU,
   },
   small: {
     textStyleName: 'body3',
     height: 4 * GU,
-    padding: 2 * GU,
-    iconPadding: 1.5 * GU,
-    minWidth: 13 * GU,
-    middleSpace: 1 * GU,
-  },
-  mini: {
-    textStyleName: 'body3',
-    height: 3 * GU,
     padding: 1.5 * GU,
     iconPadding: 1 * GU,
-    minWidth: 9.25 * GU,
+    minWidth: 22 * GU,
     middleSpace: 0.5 * GU,
   },
 }
@@ -86,26 +86,38 @@ function sizeStyles(size, wide, displayIcon, displayLabel) {
 function modeStyles(theme, mode, disabled) {
   if (disabled) {
     return {
-      background: theme.disabled,
+      background:
+        mode === 'primary' ? theme.disabled : theme.surfaceInteractive,
+      border: mode === 'primary' ? '0' : `2px solid ${theme.disabled}`,
       color: theme.disabledContent,
       iconColor: theme.disabledContent,
-      border: '0',
     }
   }
-  if (mode === 'strong') {
+  if (mode === 'primary') {
     return {
       background: theme.accent,
-      color: theme.contentInverted,
-      iconColor: theme.accentContent,
       border: '0',
+      color: theme.contentInverted,
+      iconColor: theme.contentInverted,
+
+      activeBackground: theme.surfaceInteractive,
+      activeBorder: `2px solid ${theme.accent}`,
+      activeColor: theme.surfaceContent,
+
+      hoverBackground: theme.accentHover,
+      hoverBorder: '0',
     }
   }
 
   return {
     background: theme.surfaceInteractive,
-    color: theme.surfaceContent,
-    iconColor: theme.surfaceIcon,
     border: `2px solid ${theme.contentBorder}`,
+    color: theme.surfaceContent,
+    iconColor: theme.surfaceContent,
+
+    activeBorder: `2px solid ${theme.accent}`,
+
+    hoverBorder: `4px solid ${theme.contentBorder}`,
   }
 }
 
@@ -139,17 +151,34 @@ function BasicButton({
   const displayLabel = label && (display === 'all' || display === 'label')
 
   // Mode styles
-  const { background, color, iconColor, border } = useMemo(
-    () => modeStyles(theme, mode, disabled),
-    [mode, theme, disabled]
-  )
+  const {
+    background,
+    color,
+    iconColor,
+    border,
+
+    activeBorder,
+    activeBackground,
+    activeColor,
+
+    hoverBackground,
+    hoverBorder,
+  } = useMemo(() => modeStyles(theme, mode, disabled), [mode, theme, disabled])
 
   // Size styles
-  const { height, middleSpace, minWidth, padding, textStyleCss, width } =
-    useMemo(
-      () => sizeStyles(size, wide, displayIcon, displayLabel),
-      [size, wide, displayIcon, displayLabel]
-    )
+  const {
+    height,
+    middleSpace,
+    minWidth,
+    padding,
+    textStyleCss,
+    width,
+  } = useMemo(() => sizeStyles(size, wide, displayIcon, displayLabel), [
+    size,
+    wide,
+    displayIcon,
+    displayLabel,
+  ])
 
   // Use the label as a title when only the icon is displayed
   if (displayIcon && !displayLabel && label && typeof label === 'string') {
@@ -178,13 +207,15 @@ function BasicButton({
         color: ${color};
         white-space: nowrap;
         border: ${border};
-        box-shadow: ${disabled ? 'none' : '0 1px 3px rgba(0, 0, 0, 0.1)'};
-        transition-property: transform, box-shadow;
-        transition-duration: 50ms;
-        transition-timing-function: ease-in-out;
+        transition: all 50ms ease-in-out;
+        &:hover {
+          ${hoverBackground && `background: ${hoverBackground}`};
+          ${hoverBorder && `border: ${hoverBorder}`};
+        }
         &:active {
-          transform: ${disabled ? 'none' : 'translateY(1px)'};
-          box-shadow: ${disabled ? 'none' : '0px 1px 2px rgba(0, 0, 0, 0.08)'};
+          ${activeBackground && `background: ${activeBackground}`};
+          ${activeBorder && `border: ${activeBorder}`};
+          ${activeColor && `color: ${activeColor}`}
         }
       `}
     >
@@ -217,8 +248,8 @@ BasicButton.propTypes = {
   icon: PropTypes.node,
   innerRef: PropTypes.any,
   label: PropTypes.string,
-  mode: PropTypes.oneOf(['normal', 'strong', 'positive', 'negative']),
-  size: PropTypes.oneOf(['medium', 'small', 'mini']),
+  mode: PropTypes.oneOf(['normal', 'primary']),
+  size: PropTypes.oneOf(['normal', 'medium', 'small']),
   wide: PropTypes.bool,
 }
 
@@ -226,7 +257,7 @@ BasicButton.defaultProps = {
   disabled: false,
   display: 'auto',
   mode: 'normal',
-  size: 'medium',
+  size: 'normal',
   wide: false,
 }
 

@@ -82,8 +82,8 @@ export default {
   selectedContent: '#FFFFFF',
   selectedDisabled: '#212B36',
 
-  disabled: '#3f4e6f',
-  disabledContent: '#8497bf',
+  disabled: '#32404F',
+  disabledContent: '#898D92',
   disabledIcon: '#6683c3',
 
   control: '#57698c',
@@ -94,6 +94,7 @@ export default {
   controlUnder: '#F1F3F7',
 
   accent: '#C5EC4B',
+  accentHover: '#A2C33B',
   accentAlternative: '#1D8AED',
   accentStart: '#32fff5',
   accentEnd: '#08BEE5',
