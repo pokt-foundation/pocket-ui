@@ -18,7 +18,7 @@ class PopoverBase extends React.Component {
       // "center" is a value that doesn‚Äôt exist in Popper, but we are using it
       // to define custom Popper settings (see getPopperSettings() below).
       ['center'].concat(
-        ...['auto', 'top', 'right', 'bottom', 'left'].map(position => [
+        ...['auto', 'top', 'right', 'bottom', 'left'].map((position) => [
           position,
           `${position}-start`,
           `${position}-end`,
@@ -103,7 +103,7 @@ class PopoverBase extends React.Component {
         ...settings.modifiers,
         arrow: { enabled: false },
         flip: { enabled: false },
-        offset: { enabled: true, offset: '50% - 50%p, -50%p - 50%' },
+        offset: { enabled: true, offset: '50% -50%p, -50%p - 50%' },
       },
     }
   }
@@ -135,7 +135,7 @@ class PopoverBase extends React.Component {
     }
   }
 
-  handleBlur = event => {
+  handleBlur = (event) => {
     const { closeOnOpenerFocus, opener } = this.props
     const focusedElement = event.relatedTarget
 
@@ -189,7 +189,7 @@ class PopoverBase extends React.Component {
   }
 
   render() {
-    const { children, theme, transitionStyles, zIndex } = this.props
+    const { children, placement, theme, transitionStyles, zIndex } = this.props
     const { scale, opacity } = transitionStyles
     const [maxWidth, maxHeight] = this.boundaryDimensions()
 
@@ -210,11 +210,12 @@ class PopoverBase extends React.Component {
           ref={this._cardElement}
           style={{
             opacity,
-            transform: scale.interpolate(v => `scale3d(${v}, ${v}, 1)`),
+            transform: scale.interpolate((v) => `scale3d(${v}, ${v}, 1)`),
             maxHeight: `${maxHeight - 2 * GU}px`,
             maxWidth: `${maxWidth - 2 * GU}px`,
           }}
           css={`
+            position: relative;
             background: ${theme.surface};
             border: 1px solid ${theme.border};
             border-radius: ${RADIUS}px;
@@ -223,7 +224,29 @@ class PopoverBase extends React.Component {
               /* Having the popover visible already means that it focused. */
               outline: 0;
             }
-            overflow-y: auto;
+
+            ${placement !== 'auto' &&
+              placement !== 'center' &&
+              `
+                &:after {
+                  content: ' ';
+                  position: absolute;
+                  ${placement === 'bottom' ? 'bottom' : 'top'}: ${
+                placement === 'left' || placement === 'right' ? '50%' : '100%'
+              };
+                  ${placement === 'left' ? 'left' : 'right'}: ${
+                placement === 'left' || placement === 'right' ? '100%' : '50%'
+              }; /* To the left of the tooltip */
+                  margin-top: -${GU}px;
+                  border-width: ${GU}px;
+                  border-style: solid;
+                  border-color: ${
+                    placement === 'top' ? 'white' : 'transparent'
+                  } ${placement === 'right' ? 'white' : 'transparent'} ${
+                placement === 'bottom' ? 'white' : 'transparent'
+              } ${placement === 'left' ? 'white' : 'transparent'};
+                }
+              `}
           `}
           {...stylingProps(this)}
         >
@@ -248,9 +271,9 @@ function Popover({ scaleEffect, visible, ...props }) {
         leave={{ scale: scaleEffect ? 0.9 : 1, opacity: 0 }}
         native
       >
-        {visible =>
+        {(visible) =>
           visible &&
-          (transitionStyles => (
+          ((transitionStyles) => (
             <PopoverBase
               {...props}
               rootBoundary={root}

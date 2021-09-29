@@ -75,18 +75,18 @@ export default {
   tagActivityContent: '#FFFFFF',
 
   hint: '#6683c3',
-  placeholder: '#c4c4c4',
+  placeholder: '#aaaaaa',
   link: '#0ca5ff',
   focus: '#0ca5ff',
   selected: '#08BEE5',
   selectedContent: '#FFFFFF',
   selectedDisabled: '#212B36',
 
-  disabled: '#3f4e6f',
-  disabledContent: '#8497bf',
+  disabled: '#32404F',
+  disabledContent: '#898D92',
   disabledIcon: '#6683c3',
 
-  control: '#57698c',
+  control: '#D4D4DE',
   controlBorder: '#2c3a58',
   controlBorderPressed: '#65779a',
   controlDisabled: '#3f4e6f',
@@ -94,6 +94,7 @@ export default {
   controlUnder: '#F1F3F7',
 
   accent: '#C5EC4B',
+  accentHover: '#A2C33B',
   accentAlternative: '#1D8AED',
   accentStart: '#32fff5',
   accentEnd: '#08BEE5',
