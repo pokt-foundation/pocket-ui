@@ -95,7 +95,7 @@ const TextCopy = React.memo(
                   border-left: 0;
                 `
               : ''};
-            ${textStyle('body3')};
+            ${textStyle('body4')};
             &:read-only {
               color: ${theme.surfaceContent};
               text-shadow: none;
