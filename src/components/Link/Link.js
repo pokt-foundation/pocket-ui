@@ -22,8 +22,11 @@ function Link({ onClick, href, external, ...props }) {
       {...props}
       css={`
         color: ${theme.accent};
-        text-decoration: ${external ? 'underline' : 'none'};
+        text-decoration: none;
         font-size: inherit;
+        &:hover {
+          text-decoration: underline;
+        }
       `}
     />
   )
