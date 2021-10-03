@@ -28,7 +28,7 @@ const TextInput = React.forwardRef(
         {...props}
         css={`
           width: ${({ wide }) => (wide ? '100%' : 'auto')};
-          height: ${6 * GU}px;
+          height: ${7 * GU}px;
           padding: 0 ${1.5 * GU}px;
           background: ${theme.surfaceInteractive};
           border: 2px solid ${theme.surfaceInteractiveBorder};
