@@ -1,81 +1,88 @@
-import React from 'react'
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import PropTypes from 'prop-types'
 
 // Implements a behavior similar to :focus-visible for browsers that are not
 // supporting it yet.
 //
-// It follows the Chrome implementation, checking for a pointer device rather
-// than a keyboard event.
+// It follows the Chrome implementation, checking for a pointer device to be
+// active rather than the presence of a keyboard.
 //
 // Resources:
 //  - https://caniuse.com/#search=%3Afocus-visible
 //  - https://github.com/WICG/focus-visible/issues/88#issuecomment-363227219
 //  - https://chromium-review.googlesource.com/c/chromium/src/+/897002<Paste>
-//
-class FocusVisible extends React.Component {
-  static propTypes = {
-    // children is called with an object containing two entries:
-    //   - focusVisible represents the visibility of the focus (boolean).
-    //   - onFocus() need to be called when the target element is focused.
-    children: PropTypes.func.isRequired,
-  }
-  _element = React.createRef()
-  _document = null
-  state = {
-    focusVisible: false,
-  }
-  componentDidMount() {
-    // `document` was previously set as a state entry, which was having the
-    // advantages of keeping track of it, and also triggering a rerender to
-    // remove the injected span.
-    //
-    // The issue with this approach is that the component can get unmounted
-    // before the state gets updated (e.g. in case of an error in the tree),
-    // preventing to remove the event listeners.
-    //
-    // this._document is now set on the instance directly, and
-    // this.forceUpdate() is used to trigger the second render needed to remove
-    // the injected span.
-    this._document = this._element.current.ownerDocument
-    this._document.addEventListener('mousedown', this.handlePointerEvent)
-    this._document.addEventListener('mouseup', this.handlePointerEvent)
-    this._document.addEventListener('touchstart', this.handlePointerEvent)
-    this._document.addEventListener('touchend', this.handlePointerEvent)
-    this.forceUpdate()
-  }
-  componentWillUnmount() {
-    if (this._document) {
-      this._document.removeEventListener('mousedown', this.handlePointerEvent)
-      this._document.removeEventListener('mouseup', this.handlePointerEvent)
-      this._document.removeEventListener('touchstart', this.handlePointerEvent)
-      this._document.removeEventListener('touchend', this.handlePointerEvent)
-    }
-  }
-  // It doesn’t seem to be specified, but pointer-related events happen before
-  // the focus-related events on every modern browser.
-  handlePointerEvent = e => {
-    this._pointerActive = true
-    this._timer = setTimeout(() => {
-      this._pointerActive = false
-    }, 0)
-    if (this.state.focusVisible) {
-      this.setState({ focusVisible: false })
-    }
-  }
-  // This is passed to `children()`, and called from the outside.
-  handleFocus = () => {
-    this.setState({ focusVisible: !this._pointerActive })
-  }
-  render() {
-    const { focusVisible } = this.state
 
-    return (
-      <React.Fragment>
-        {this.props.children({ focusVisible, onFocus: this.handleFocus })}
-        {!this._document && <span ref={this._element} />}
-      </React.Fragment>
-    )
-  }
+const FocusVisibleContext = createContext(false)
+
+export function FocusVisible({ children }) {
+  const element = useRef(null)
+  const pointerActive = useRef(false)
+  const [focusVisible, setFocusVisible] = useState(false)
+  const [hasRendered, setHasRendered] = useState(false)
+
+  useEffect(() => {
+    let timer
+
+    const onPointerEvent = () => {
+      pointerActive.current = true
+
+      timer = setTimeout(() => {
+        // It doesn’t seem to be specified in HTML5, but pointer-related events
+        // happen before the focus-related events on every modern browser. It
+        // means that between the moment where onPointerEvent gets called and
+        // the this setTimeout() callback gets executed, the onFocusIn() function
+        // (see below) might be executed with pointerActive.current being true.
+        pointerActive.current = false
+      }, 0)
+
+      setFocusVisible(false)
+    }
+
+    const onFocusIn = () => {
+      setFocusVisible(!pointerActive.current)
+    }
+
+    setHasRendered(true)
+
+    const document = element.current?.ownerDocument
+
+    if (document) {
+      document.body.addEventListener('focusin', onFocusIn)
+      document.addEventListener('mousedown', onPointerEvent)
+      document.addEventListener('mouseup', onPointerEvent)
+      document.addEventListener('touchstart', onPointerEvent)
+      document.addEventListener('touchend', onPointerEvent)
+    }
+
+    return () => {
+      clearTimeout(timer)
+
+      if (document) {
+        document.body.removeEventListener('focusin', onFocusIn)
+        document.removeEventListener('mousedown', onPointerEvent)
+        document.removeEventListener('mouseup', onPointerEvent)
+        document.removeEventListener('touchstart', onPointerEvent)
+        document.removeEventListener('touchend', onPointerEvent)
+      }
+    }
+  }, [])
+
+  return (
+    <FocusVisibleContext.Provider value={focusVisible}>
+      {children}
+      {!hasRendered && <span ref={element} />}
+    </FocusVisibleContext.Provider>
+  )
 }
 
-export default FocusVisible
+FocusVisible.propTypes = { children: PropTypes.node }
+
+export function useFocusVisible() {
+  return useContext(FocusVisibleContext)
+}
