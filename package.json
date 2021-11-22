@@ -6,7 +6,7 @@
   "author": "Enrique Ortiz <hi@enriqueortiz.dev>",
   "license": "MIT",
   "main": "dist/index.js",
-  "module": "dist/esm/index.js",
+  "module": "dist/esm/src/index.js",
   "sideEffects": false,
   "files": [
     "LICENSE",
