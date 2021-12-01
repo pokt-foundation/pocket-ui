@@ -11,7 +11,7 @@ The complete documentation will be coming soon!
 Install pocketUI alongside styled-components from npm:
 
 ```sh
-npm install --save @pocket-foundation/ui styled-components
+pnpm install --save @pocket-foundation/ui styled-components
 ```
 
 Wrap your app with the `Main` component:
