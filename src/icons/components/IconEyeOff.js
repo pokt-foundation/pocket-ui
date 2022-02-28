@@ -32,5 +32,5 @@ function IconEyeOff({size, ...props }) {
   );
 }
 
-IconEyeOff.prototypes = IconPropTypes
+IconEyeOff.propTypes = IconPropTypes
 export default IconEyeOff

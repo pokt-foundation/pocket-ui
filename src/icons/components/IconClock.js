@@ -32,5 +32,5 @@ function IconClock({ size, ...props }) {
   );
 }
 
-IconClock.prototypes = IconPropTypes;
+IconClock.propTypes = IconPropTypes;
 export default IconClock;
