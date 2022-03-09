@@ -30,7 +30,7 @@ const TextInput = React.forwardRef(
           width: ${({ wide }) => (wide ? '100%' : 'auto')};
           height: ${7 * GU}px;
           padding: 0 ${1.5 * GU}px;
-          background: ${theme.tableBorder};
+          background: ${theme.surfaceInteractive};
           border: 2px solid ${theme.surfaceInteractiveBorder};
           color: ${theme.surfaceContent};
           border-radius: ${RADIUS / 2}px;

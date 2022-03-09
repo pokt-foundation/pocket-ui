@@ -81,6 +81,7 @@ export default {
   selected: '#08BEE5',
   selectedContent: '#FFFFFF',
   selectedDisabled: '#212B36',
+  inactive: '#FAFAFA',
 
   disabled: '#32404F',
   disabledContent: '#898D92',
@@ -102,6 +103,8 @@ export default {
 
   floating: '#1c2539',
   floatingContent: '#FFFFFF',
+
+  error: '#F93232',
 
   green: '#9BC75A',
   yellow: '#F7D858',
