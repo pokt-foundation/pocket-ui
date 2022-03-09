@@ -7,7 +7,7 @@ import { useTheme } from '../../theme'
 import DiscButton from '../DiscButton/DiscButton'
 import Popover from '../Popover/Popover'
 
-function Help({ hint, placement, children }) {
+function Help({ hint, placement, children, ...props }) {
   const buttonElement = useRef()
   const [visible, setVisible] = useState(false)
   const open = useCallback(() => setVisible(true), [])
@@ -23,6 +23,7 @@ function Help({ hint, placement, children }) {
         description={hint}
         onClick={open}
         size={1.5 * GU}
+        {...props}
         css={`
           margin-top: ${insideFieldLabel ? -3 : 0}px;
           margin-left: ${insideBoxHeading || insideFieldLabel ? 1 * GU : 0}px;

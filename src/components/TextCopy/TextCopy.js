@@ -84,6 +84,7 @@ const TextCopy = React.memo(
           value={value}
           wide
           css={`
+            background: ${theme.tableBorder};
             text-overflow: ellipsis;
             height: ${HEIGHT}px;
             max-width: 100%;

@@ -32,6 +32,8 @@ const TextCopyWithPassword = React.memo(
     const inputRef = useRef(null)
     const [showPassword, setShowPassword] = useState(false)
 
+    const isMultiline = multiline && showPassword
+
     // Allows to focus the component from the outside
     useImperativeHandle(ref, () => ({
       focus: () => {
@@ -52,7 +54,7 @@ const TextCopyWithPassword = React.memo(
         inputRef.current.focus()
 
         try {
-          navigator.clipboard.writeText(inputRef.current.innerText)
+          navigator.clipboard.writeText(inputRef.current.value)
           onCopyOrToast(message)
         } catch (err) {
           warn(err)
@@ -71,7 +73,6 @@ const TextCopyWithPassword = React.memo(
           display: inline-flex;
           align-items: center;
           max-width: 100%;
-          width: ${40 * GU}px;
           height: ${multiline ? HEIGHT + 20 : HEIGHT}px;
           padding-left: ${adornment ? `${HEIGHT}px` : '0'};
           background: ${theme.tableBorder};
@@ -86,11 +87,13 @@ const TextCopyWithPassword = React.memo(
           value={value}
           wide
           type={showPassword ? 'text' : 'password'}
-          multiline={showPassword && multiline}
+          multiline={isMultiline}
           css={`
+            background: ${theme.tableBorder};
             ${showPassword ? `text-overflow: ellipsis;` : null}
             resize: none;
             height: ${HEIGHT}px;
+            ${isMultiline ? `padding: 0 ${GU + 4}px` : null};
             max-width: 100%;
             border: 0px;
             ${adornment
