@@ -103,6 +103,8 @@ export default {
 
   floating: '#1c2539',
   floatingContent: '#FFFFFF',
+  floatingAlternative: '#141a21',
+  FloatingAlternativeHover: '#20262c',
 
   error: '#F93232',
 
