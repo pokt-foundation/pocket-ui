@@ -60,6 +60,8 @@ export default {
   badgeContent: '#ffffff',
   badgePressed: '#4c5d82',
 
+  scrollbar: '#E0E0F1',
+
   tableBorder: '#091828',
 
   tagIdentifier: '#564090',

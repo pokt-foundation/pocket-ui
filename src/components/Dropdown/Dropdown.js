@@ -63,6 +63,15 @@ function Dropdown({
                 color: ${theme.content};
                 position: absolute;
                 z-index: 999;
+
+                &::-webkit-scrollbar {
+                  width: ${GU - 3}px;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                  background-color: ${theme.scrollbar};
+                  border-radius: ${GU - 4}px;
+                }
               `}
             >
               {children}
