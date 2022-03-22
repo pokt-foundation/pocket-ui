@@ -122,7 +122,7 @@ const WrapperTextInput = React.forwardRef(
           css={`
             ${adornmentPosition === 'end'
               ? 'padding-right'
-              : 'padding-left'}: ${adornmentWidth}px;
+              : 'padding-left'}: ${adornmentWidth}px !important;
           `}
           {...props}
         />
