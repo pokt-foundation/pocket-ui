@@ -5,7 +5,7 @@ import { textStyle, GU, RADIUS } from '../../style'
 
 // Simple text input
 const TextInput = React.forwardRef(
-  ({ autofocus, multiline, type, mode, error, ...props }, ref) => {
+  ({ autofocus, multiline, type, error, ...props }, ref) => {
     const theme = useTheme()
 
     const handleRef = useCallback(
@@ -103,7 +103,6 @@ const WrapperTextInput = React.forwardRef(
         width: adornmentWidth = 56,
         padding: adornmentPadding = 24,
       },
-      mode,
       ...props
     },
     ref
