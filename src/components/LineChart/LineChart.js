@@ -51,6 +51,8 @@ function LineChart({
   threshold,
   total,
   width: widthProps,
+  dotColor,
+  renderCheckLines,
   ...props
 }) {
   const [width, onSvgRef] = useMeasuredWidth()
@@ -163,15 +165,71 @@ function LineChart({
                   {renderCheckpoints &&
                     line.values.slice(1, -1).map((val, index) => {
                       return (
-                        <circle
-                          key={index}
-                          cx={getX(index + 1) * progress}
-                          cy={getY(val, progress, chartHeight)}
-                          r={dotRadius}
-                          fill={color() || 'white'}
-                          stroke={line.color || color(lineIndex, { lines })}
-                          strokeWidth="1"
-                        />
+                        <>
+                          <circle
+                            key={index}
+                            cx={getX(index + 1) * progress}
+                            cy={getY(val, progress, chartHeight)}
+                            r={dotRadius}
+                            fill={dotColor || color() || 'white'}
+                            stroke={
+                              line.color ||
+                              dotColor ||
+                              color(lineIndex, { lines })
+                            }
+                            strokeWidth="1"
+                          />
+                          {renderCheckLines && (
+                            <>
+                              <line
+                                key={`line-${index}`}
+                                x1={getX(index + 1) * progress}
+                                x2={getX(index + 1) * progress}
+                                y1={height - 30}
+                                y2={
+                                  getY(val, progress, chartHeight) +
+                                  1.2 * dotRadius
+                                }
+                                stroke="rgba(255, 255, 255, 0.05)"
+                                strokeWidth="1"
+                              />
+                              <defs>
+                                <linearGradient id="bg-polygon-gradient">
+                                  <stop
+                                    offset="50%"
+                                    stopOpacity="30%"
+                                    stopColor={'#1C8AED4D'}
+                                  />
+                                  <stop
+                                    offset="100%"
+                                    stopOpacity="0%"
+                                    stopColor={'#1C8AED00'}
+                                  />
+                                </linearGradient>
+                              </defs>
+                              <polygon
+                                fill="url(#bg-polygon-gradient)"
+                                stroke="transparent"
+                                points={`
+                                  ${line.values
+                                    .map((val, index) => {
+                                      return `
+                                        ${getX(index * progress)},
+                                        ${getY(
+                                          val,
+                                          progress,
+                                          chartHeight,
+                                          index
+                                        )}
+                                      `
+                                    })
+                                    .join('')} ${
+                                  getX(line.values.length - 1) * progress
+                                },${height - 30}`}
+                              />
+                            </>
+                          )}
+                        </>
                       )
                     })}
                 </g>
@@ -219,7 +277,7 @@ function LineChart({
                       font-weight: 300;
                       ${unselectable};
                       ${highlightColor &&
-                        `
+                      `
                         font-weight: 800;
                         font-size
                       `}
@@ -286,6 +344,8 @@ LineChart.propTypes = {
   reset: PropTypes.bool,
   threshold: PropTypes.bool,
   color: PropTypes.func,
+  dotColor: PropTypes.string,
+  renderCheckLines: PropTypes.bool,
 }
 
 LineChart.defaultProps = {
@@ -304,6 +364,7 @@ LineChart.defaultProps = {
   label: (index) => index + 1,
   color: (index, { lines }) =>
     `hsl(${(index * (360 / lines.length) + 40) % 360}, 60%, 70%)`,
+  renderCheckLines: false,
 }
 
 export default LineChart

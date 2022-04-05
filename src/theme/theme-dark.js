@@ -13,6 +13,7 @@ export default {
   contentInverted: '#000000',
   contentBorder: '#FFFFFF',
   contentSecondary: '#7c99d6',
+  backgroundAlternative: '#192430',
 
   surface: '#111b24',
   surfaceGradient1: '#111b24',
@@ -102,6 +103,7 @@ export default {
   accentStart: '#32fff5',
   accentEnd: '#08BEE5',
   accentContent: '#FFFFFF',
+  accentSecondAlternative: '#678800',
 
   floating: '#1c2539',
   floatingContent: '#FFFFFF',
@@ -109,6 +111,8 @@ export default {
   FloatingAlternativeHover: '#20262c',
 
   error: '#F93232',
+  errorStart: '#8D0C0C',
+  errorEnd: '#CE1B1B',
 
   green: '#9BC75A',
   yellow: '#F7D858',

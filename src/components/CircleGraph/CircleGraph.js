@@ -38,7 +38,7 @@ function labelCompat(parts) {
   return parts
 }
 
-function CircleGraph({ color, label, size, strokeWidth, value }) {
+function CircleGraph({ color, label, size, strokeWidth, value, children }) {
   const theme = useTheme()
   const length = Math.PI * 2 * (size - strokeWidth)
   const radius = (size - strokeWidth) / 2
@@ -48,7 +48,7 @@ function CircleGraph({ color, label, size, strokeWidth, value }) {
   }
 
   const labelPart = useCallback(
-    name => animValue => {
+    (name) => (animValue) => {
       if (typeof label !== 'function') {
         return null
       }
@@ -91,6 +91,7 @@ function CircleGraph({ color, label, size, strokeWidth, value }) {
             height={size}
             viewBox={`0 0 ${size} ${size}`}
           >
+            {children}
             <circle
               cx={size / 2}
               cy={size / 2}
@@ -110,7 +111,7 @@ function CircleGraph({ color, label, size, strokeWidth, value }) {
               style={{
                 stroke: progressValue.interpolate(colorFn),
                 strokeDashoffset: progressValue.interpolate(
-                  t => length - (length * t) / 2
+                  (t) => length - (length * t) / 2
                 ),
               }}
               css={`
@@ -192,6 +193,7 @@ CircleGraph.propTypes = {
   size: PropTypes.number,
   strokeWidth: PropTypes.number,
   value: PropTypes.number.isRequired,
+  children: PropTypes.node,
 }
 
 CircleGraph.defaultProps = {

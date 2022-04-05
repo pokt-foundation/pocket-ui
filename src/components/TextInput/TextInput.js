@@ -5,7 +5,7 @@ import { textStyle, GU, RADIUS } from '../../style'
 
 // Simple text input
 const TextInput = React.forwardRef(
-  ({ autofocus, multiline, type, ...props }, ref) => {
+  ({ autofocus, multiline, type, error, ...props }, ref) => {
     const theme = useTheme()
 
     const handleRef = useCallback(
@@ -31,12 +31,13 @@ const TextInput = React.forwardRef(
           height: ${7 * GU}px;
           padding: 0 ${1.5 * GU}px;
           background: ${theme.surfaceInteractive};
-          border: 2px solid ${theme.surfaceInteractiveBorder};
+          border: ${error
+            ? `2px solid  ${theme.error}`
+            : `2px solid ${theme.surfaceInteractiveBorder}`};
           color: ${theme.surfaceContent};
           border-radius: ${RADIUS / 2}px;
           appearance: none;
           ${textStyle('body2')};
-
           transition: all 50ms ease-in-out;
 
           ${multiline
@@ -81,6 +82,7 @@ TextInput.propTypes = {
   multiline: PropTypes.bool,
   required: PropTypes.bool,
   type: PropTypes.string,
+  error: PropTypes.bool,
 }
 
 TextInput.defaultProps = {
@@ -88,6 +90,7 @@ TextInput.defaultProps = {
   multiline: false,
   required: false,
   type: 'text',
+  error: false,
 }
 
 // Text input wrapped to allow adornments
@@ -109,6 +112,7 @@ const WrapperTextInput = React.forwardRef(
     if (!adornment) {
       return <TextInput ref={ref} {...props} />
     }
+
     return (
       <div
         css={`
