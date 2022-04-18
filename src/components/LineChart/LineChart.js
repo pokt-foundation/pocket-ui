@@ -52,7 +52,9 @@ function LineChart({
   total,
   width: widthProps,
   dotColor,
-  renderCheckLines,
+  renderHorizontalCheckLines,
+  renderVerticalCheckLines,
+  renderBackground,
   ...props
 }) {
   const [width, onSvgRef] = useMeasuredWidth()
@@ -179,22 +181,27 @@ function LineChart({
                             }
                             strokeWidth="1"
                           />
-                          {renderCheckLines && (
+                          {renderVerticalCheckLines && (
+                            <line
+                              key={`line-${index}`}
+                              x1={getX(index + 1) * progress}
+                              x2={getX(index + 1) * progress}
+                              y1={height - 30}
+                              y2={
+                                getY(val, progress, chartHeight) +
+                                1.2 * dotRadius
+                              }
+                              stroke="rgba(255, 255, 255, 0.05)"
+                              strokeWidth="1"
+                            />
+                          )}
+                          {index < 1 && renderBackground && (
                             <>
-                              <line
-                                key={`line-${index}`}
-                                x1={getX(index + 1) * progress}
-                                x2={getX(index + 1) * progress}
-                                y1={height - 30}
-                                y2={
-                                  getY(val, progress, chartHeight) +
-                                  1.2 * dotRadius
-                                }
-                                stroke="rgba(255, 255, 255, 0.05)"
-                                strokeWidth="1"
-                              />
                               <defs>
-                                <linearGradient id="bg-polygon-gradient">
+                                <linearGradient
+                                  id="bg-polygon-gradient"
+                                  gradientTransform="rotate(75)"
+                                >
                                   <stop
                                     offset="50%"
                                     stopOpacity="30%"
@@ -202,7 +209,7 @@ function LineChart({
                                   />
                                   <stop
                                     offset="100%"
-                                    stopOpacity="0%"
+                                    stopOpacity="100%"
                                     stopColor={'#1C8AED00'}
                                   />
                                 </linearGradient>
@@ -263,28 +270,51 @@ function LineChart({
                 const scaleLength = scales.length - 1
 
                 return (
-                  <text
-                    key={index}
-                    x={width + OFFSET / 8}
-                    y={
-                      chartHeight - (chartHeight / scaleLength) * index + GU / 2
-                    }
-                    textAnchor={getLabelPosition(0, labels.length)}
-                    fill={highlightColor || labelColor}
-                    css={`
-                      alignment-baseline: middle;
-                      font-size: 12px;
-                      font-weight: 300;
-                      ${unselectable};
-                      ${highlightColor &&
-                      `
+                  <>
+                    <text
+                      key={index}
+                      x={width + OFFSET / 8}
+                      y={
+                        chartHeight -
+                        (chartHeight / scaleLength) * index +
+                        GU / 2
+                      }
+                      textAnchor={getLabelPosition(0, labels.length)}
+                      fill={highlightColor || labelColor}
+                      css={`
+                        alignment-baseline: middle;
+                        font-size: 12px;
+                        font-weight: 300;
+                        ${unselectable};
+                        ${highlightColor &&
+                        `
                         font-weight: 800;
                         font-size
                       `}
-                    `}
-                  >
-                    {label}
-                  </text>
+                      `}
+                    >
+                      {label}
+                    </text>
+                    {renderHorizontalCheckLines && (
+                      <line
+                        key={`line-${index}`}
+                        x1={width + OFFSET / 8}
+                        x2={0}
+                        y1={
+                          chartHeight -
+                          (chartHeight / scaleLength) * index +
+                          GU / 2
+                        }
+                        y2={
+                          chartHeight -
+                          (chartHeight / scaleLength) * index +
+                          GU / 2
+                        }
+                        stroke="rgba(255, 255, 255, 0.05)"
+                        strokeWidth="1"
+                      />
+                    )}
+                  </>
                 )
               })}
           </g>
@@ -345,7 +375,9 @@ LineChart.propTypes = {
   threshold: PropTypes.bool,
   color: PropTypes.func,
   dotColor: PropTypes.string,
-  renderCheckLines: PropTypes.bool,
+  renderHorizontalCheckLines: PropTypes.bool,
+  renderVerticalCheckLines: PropTypes.bool,
+  renderBackground: PropTypes.bool,
 }
 
 LineChart.defaultProps = {
@@ -364,7 +396,9 @@ LineChart.defaultProps = {
   label: (index) => index + 1,
   color: (index, { lines }) =>
     `hsl(${(index * (360 / lines.length) + 40) % 360}, 60%, 70%)`,
-  renderCheckLines: false,
+  renderHorizontalCheckLines: false,
+  renderVerticalCheckLines: false,
+  renderBackground: false,
 }
 
 export default LineChart
