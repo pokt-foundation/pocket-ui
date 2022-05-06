@@ -165,12 +165,12 @@ function LineChart({
                     strokeWidth="2"
                   />
                   {renderCheckpoints &&
-                    line.values.slice(1, -1).map((val, index) => {
+                    line.values.slice(0, -1).map((val, index) => {
                       return (
                         <>
                           <circle
                             key={index}
-                            cx={getX(index + 1) * progress}
+                            cx={getX(index) * progress}
                             cy={getY(val, progress, chartHeight)}
                             r={dotRadius}
                             fill={dotColor || color() || 'white'}
@@ -184,8 +184,8 @@ function LineChart({
                           {renderVerticalCheckLines && (
                             <line
                               key={`line-${index}`}
-                              x1={getX(index + 1) * progress}
-                              x2={getX(index + 1) * progress}
+                              x1={getX(index) * progress}
+                              x2={getX(index) * progress}
                               y1={height - 30}
                               y2={
                                 getY(val, progress, chartHeight) +
@@ -198,10 +198,7 @@ function LineChart({
                           {index < 1 && renderBackground && (
                             <>
                               <defs>
-                                <linearGradient
-                                  id="bg-polygon-gradient"
-                                  gradientTransform="rotate(75)"
-                                >
+                                <linearGradient id="bg-polygon-gradient">
                                   <stop
                                     offset="50%"
                                     stopOpacity="30%"
@@ -218,6 +215,7 @@ function LineChart({
                                 fill="url(#bg-polygon-gradient)"
                                 stroke="transparent"
                                 points={`
+                                ${0},${height - 30}
                                   ${line.values
                                     .map((val, index) => {
                                       return `
@@ -232,7 +230,8 @@ function LineChart({
                                     })
                                     .join('')} ${
                                   getX(line.values.length - 1) * progress
-                                },${height - 30}`}
+                                },${height - 30}
+                                `}
                               />
                             </>
                           )}
