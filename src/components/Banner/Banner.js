@@ -13,24 +13,24 @@ function useModeColor(mode) {
 
   if (mode === 'error') {
     return compactMode
-      ? `linear-gradient(106.2deg, #3A2020 0%, #262A34 100%)`
+      ? `linear-gradient(270.07deg, rgba(27, 35, 49, 0) 0.04%, #1B2331 0.05%, #1B2331 80.37%, #690A0A 98.28%)`
       : `linear-gradient(270deg, #1B2331 36.46%, #3F0B0B 100%)`
   }
   if (mode === 'warning') {
     return compactMode
-      ? `linear-gradient(106.2deg, #2E2818 0%, #262A34 100%)`
+      ? `linear-gradient(90.02deg, #888632 0.02%, #0B1525 15.45%, #0B1525 99.43%)`
       : `linear-gradient(270deg, ${theme.surface} 36.46%, #816110 100%)`
   }
   if (mode === 'info') {
     return compactMode
-      ? `linear-gradient(106.2deg, #243A4F 0%, #262A34 100%)`
+      ? `linear-gradient(89.98deg, #104A64 1.52%, #1B2331 16.38%)`
       : `linear-gradient(270deg, ${theme.surface} 36.46%, #104A64 100%)`
   }
 
   return `background: ${theme.surface}`
 }
 
-function Banner({ children, mode = 'info', title }) {
+function Banner({ children, mode = 'info', title, withIcon = true }) {
   const modeBackground = useModeColor(mode)
   const { within } = useViewport()
   const theme = useTheme()
@@ -72,30 +72,43 @@ function Banner({ children, mode = 'info', title }) {
         min-height: ${25 * GU};
         background: ${modeBackground};
         display: grid;
-        grid-template-columns: ${compactMode ? '1fr' : `${12 * GU}px 1fr`};
+        grid-template-columns: ${!withIcon
+          ? '1fr'
+          : compactMode
+          ? `${3 * GU}px 1fr`
+          : `${12 * GU}px 1fr`};
         padding: ${compactMode ? `${GU * 2}px` : `${3 * GU}px ${4 * GU}px`};
         border-radius: ${RADIUS}px;
       `}
     >
-      {!compactMode && (
+      {withIcon && (
         <div
           css={`
-            width: ${12 * GU}px;
+            width: ${compactMode ? 2 * GU : 12 * GU}px;
             height: 100%;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: ${compactMode ? 'start' : 'center'};
+            margin-top: ${compactMode ? 2 * GU : 0}px;
           `}
         >
           <div
             css={`
-              background: ${titleColor};
-              width: ${4 * GU}px;
-              height: ${4 * GU}px;
+              background: ${compactMode ? 'transparent' : titleColor};
+              width: ${compactMode ? 2 * GU : 4 * GU}px;
+              height: ${compactMode ? 1.5 * GU : 4 * GU}px;
               border-radius: 50% 50%;
               display: flex;
               justify-content: center;
               align-items: center;
+              border: ${compactMode && `2px solid ${titleColor}`};
+
+              ${compactMode &&
+              `svg {
+                color ${titleColor};
+                width: ${GU}px;
+                height: ${GU}px;
+              }`}
             `}
           >
             {modeIcon}
@@ -141,6 +154,7 @@ Banner.propTypes = {
   children: PropTypes.node,
   mode: PropTypes.string,
   title: PropTypes.string,
+  withIcon: PropTypes.bool,
 }
 
 export default Banner
