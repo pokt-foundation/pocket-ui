@@ -6,24 +6,30 @@ import { textStyle, GU, RADIUS } from '../../style'
 import { useTheme } from '../../theme'
 import { IconInfo, IconThickCross } from '../../icons'
 
-function useModeColor(mode) {
+function useModeColor(mode, withIcon) {
   const theme = useTheme()
   const { within } = useViewport()
   const compactMode = within(-1, 'medium')
 
   if (mode === 'error') {
     return compactMode
-      ? `linear-gradient(270.07deg, rgba(27, 35, 49, 0) 0.04%, #1B2331 0.05%, #1B2331 80.37%, #690A0A 98.28%)`
+      ? !withIcon
+        ? `linear-gradient(123.23deg, #141C24 11.81%, #262A34 98.51%)`
+        : `linear-gradient(270.07deg, rgba(27, 35, 49, 0) 0.04%, #1B2331 0.05%, #1B2331 80.37%, #690A0A 98.28%)`
       : `linear-gradient(270deg, #1B2331 36.46%, #3F0B0B 100%)`
   }
   if (mode === 'warning') {
     return compactMode
-      ? `linear-gradient(90.02deg, #888632 0.02%, #0B1525 15.45%, #0B1525 99.43%)`
+      ? !withIcon
+        ? `linear-gradient(123.23deg, #141C24 11.81%, #262A34 98.51%)`
+        : `linear-gradient(90.02deg, #888632 0.02%, #0B1525 15.45%, #0B1525 99.43%)`
       : `linear-gradient(270deg, ${theme.surface} 36.46%, #816110 100%)`
   }
   if (mode === 'info') {
     return compactMode
-      ? `linear-gradient(89.98deg, #104A64 1.52%, #1B2331 16.38%)`
+      ? !withIcon
+        ? `linear-gradient(123.23deg, #141C24 11.81%, #262A34 98.51%)`
+        : `linear-gradient(89.98deg, #104A64 1.52%, #1B2331 16.38%)`
       : `linear-gradient(270deg, ${theme.surface} 36.46%, #104A64 100%)`
   }
 
@@ -31,7 +37,7 @@ function useModeColor(mode) {
 }
 
 function Banner({ children, mode = 'info', title, withIcon = true }) {
-  const modeBackground = useModeColor(mode)
+  const modeBackground = useModeColor(mode, withIcon)
   const { within } = useViewport()
   const theme = useTheme()
 
